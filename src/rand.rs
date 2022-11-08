@@ -254,21 +254,7 @@ mod sysrand_chunk {
     use crate::error;
 
     pub fn chunk(mut dest: &mut [u8]) -> Result<usize, error::Unspecified> {
-        // This limit is specified in
-        // https://www.w3.org/TR/WebCryptoAPI/#Crypto-method-getRandomValues.
-        const MAX_LEN: usize = 65_536;
-        if dest.len() > MAX_LEN {
-            dest = &mut dest[..MAX_LEN];
-        };
-
-        let _ = web_sys::window()
-            .ok_or(error::Unspecified)?
-            .crypto()
-            .map_err(|_| error::Unspecified)?
-            .get_random_values_with_u8_array(dest)
-            .map_err(|_| error::Unspecified)?;
-
-        Ok(dest.len())
+        unimplemented!()
     }
 }
 
